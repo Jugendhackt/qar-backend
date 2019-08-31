@@ -23,8 +23,15 @@ def Download(path = None):
         #app.log.exception(e)
         return "Error 400, wrong file?" #app.Error(400)
 
-
-
+@app.route('/assets/<path>')
+def get_file(path = None):
+    if path is None:
+        return "Error"
+    try:
+        print(path)
+        return send_file("assets/"+path, as_attachment = True)
+    except Exception as e:
+        return "Errrrrrrrrrrror"
 @app.route('/upload')
 def upload_file():
    return render_template('upload.html')
