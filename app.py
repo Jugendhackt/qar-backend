@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template, redirect, send_file
+from werkzeug import secure_filename
 import json
 app = Flask(__name__)
+
+#print(app.config['UPLOAD_FOLDER'])
 
 @app.route('/')
 @app.route('/first_3d')
@@ -19,6 +22,19 @@ def Download(path = None):
         #app.log.exception(e)
         return "Error 400, wrong file?" #app.Error(400)
 
+
+
+@app.route('/upload')
+def upload_file():
+   return render_template('upload.html')
+
+
+@app.route('/uploader', methods = ['POST','GET'])
+def upload_file1():
+   if request.method == 'POST':
+      f = request.files['file']
+      f.save(secure_filename(f.filename))
+      return 'file uploaded successfully'
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port = 8080)
