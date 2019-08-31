@@ -1,4 +1,7 @@
 <html>
+<!-- Import the component -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
    <body>
       <form action = "/uploader" method = "POST" 
          enctype = "multipart/form-data">
@@ -6,4 +9,8 @@
          <input type = "submit"/>
       </form>
    </body>
+
+<model-viewer camera-controls background-color="#3cba54" alt="A 3D model of an astronaut" ios-src="assets/12.usdz">
+</model-viewer>
+
 </html>
