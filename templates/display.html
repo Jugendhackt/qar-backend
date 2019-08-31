@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Your AR</title>
+</head>
+<body>
+    <nav class="nav">
+        <img class="logo" src="/static/pic/bucket_empty.png" alt="">
+        <h1 class="titel">QAR</h1>
+    </nav>
+    <div class="hero">
+        <div>
+            <h2>For Apple</h2>
+            <p>This version is only supported for apple at the moment-</p>
+                
+        </div>
+        <model-viewer camera-controls background-color="#3cba54" alt="A 3D model of an astronaut" ios-src="{{file}}">
+        </model-viewer>
+    </div>
+</body>
+</html>
+

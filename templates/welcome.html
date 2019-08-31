@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav">
+        <img class="logo" src="/static/pic/bucket_empty.png" alt="">
+        <h1 class="titel">QAR</h1>
+    </nav>
+    <div class="hero">
+        <div class="smallhero">
+            <h2 class="hero-title">Welcome to QAR</h2>
+            <p class="hero-text">QAR is a service to make costume QR-codes which are connected to a 3D-file. With the app for android or the website you can use the 3D file as augmented reality everywhere at any point.  </p>
+        
+        </div>
+    </div>
+    <div class="pressing">
+        <form action = "/uploaded" method = "POST" enctype = "multipart/form-data">
+            <input type = "file" name = "file" />
+            <input type = "submit"/>
+        </form>
+    </div>
+</body>
+</html>
