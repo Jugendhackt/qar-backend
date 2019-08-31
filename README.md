@@ -12,7 +12,7 @@ Bringt dein Programm auf den neusten Stand.
 sudo apt install python3 python3-pip 
 ```
 
-xxx
+Installiert die nötigen tools.
 
 ```sh
 source virtual/bin/activate 
