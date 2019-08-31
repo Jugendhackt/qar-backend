@@ -5,6 +5,12 @@ app = Flask(__name__)
 
 #print(app.config['UPLOAD_FOLDER'])
 
+@app.route("/")
+@app.route("/welcome")
+def welcome():
+    return render_template("welcome.html")
+
+
 @app.route('/<path>')
 def my_form(path = None):
     if path is None:
@@ -32,17 +38,16 @@ def get_file(path = None):
         return send_file("assets/"+path, as_attachment = True)
     except Exception as e:
         return "Errrrrrrrrrrror"
-@app.route('/upload')
+@app.route('/uploaded', methods = ['POST','GET'])
 def upload_file():
-   return render_template('upload.html')
-
-
-@app.route('/uploader', methods = ['POST','GET'])
-def upload_file1():
    if request.method == 'POST':
       f = request.files['file']
       f.save(secure_filename(f.filename))
-      return 'file uploaded successfully'
+      return render_template("uploaded.html")
+
+@app.route("/display")
+def display():
+   return render_template("display.html")
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port = 8080)
