@@ -5,10 +5,11 @@ app = Flask(__name__)
 
 #print(app.config['UPLOAD_FOLDER'])
 
-@app.route('/')
-@app.route('/first_3d')
-def my_form():
-    return json.dumps({"File":"nifanta.ch:8080/file/some3dfile.3d","virtual":True})
+@app.route('/<path>')
+def my_form(path = None):
+    if path is None:
+         return "Not yet here"
+    return json.dumps({"File":"nifanta.ch:8080/file/"+str(path),"virtual":True})
 
 @app.route("/file/<path>")
 def Download(path = None):
