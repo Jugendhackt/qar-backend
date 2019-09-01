@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, send_file
 from werkzeug import secure_filename
+import time
 import json
 import pyqrcode
 from PIL import Image
@@ -36,15 +37,16 @@ def upload_file():
       url.png("test.png",scale=10)
       im = Image.open('test.png')
       im = im.convert("RGBA")
-      logo = Image.open('static/pic/bucket_empty.png')
-      box = (145,145,245,245)
-      im.crop(box)
-      region = logo
-      region = region.resize((box[2] - box[0], box[3] - box[1]))
-      im.paste(region,box)
-      im.save('static/pic/qr-code.png')
-      del im
-      return render_template("uploaded.html")
+      for k in range(2,5):
+      	logo = Image.open('static/pic/bucket_empty.png')
+      	box = (200,200,300,300)
+      	im.crop(box)
+      	region = logo
+      	region = region.resize((box[2] - box[0], box[3] - box[1]))
+      	im.paste(region,box)
+      	im.save(f'static/pic/qr-code{k}.png')
+      	del im
+      return render_template("uploaded.html",time = time.time())
    else:
         return "Just Post"
 @app.route("/display/<path>")
@@ -52,11 +54,13 @@ def display(path = None):
    print("display",path)
    if path is None:
        return "errorrr"
-   if path[-1]=="_":
+   x = request.args.get('app', default = False, type = bool)
+
+   if x:
        print("hi")
-       return redirect("/file/"+str(path[:-1]))
+       return redirect("/file/"+str(path))
    print(path)
-   return render_template("display.html",file=path)
+   return render_template("display.html",file="/file/"+path)
 
 if __name__ == "__main__":
-    app.run(debug=True,port = 8080)
+    app.run(debug=True,port = 8080, host="0.0.0.0")
