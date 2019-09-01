@@ -38,13 +38,13 @@ def upload_file():
       im = Image.open('test.png')
       im = im.convert("RGBA")
       for k in range(2,5):
-      	logo = Image.open('static/pic/bucket_empty.png')
+      	logo = Image.open('static/pic/Logo'+str(k)+'Big.png')
       	box = (200,200,300,300)
       	im.crop(box)
       	region = logo
       	region = region.resize((box[2] - box[0], box[3] - box[1]))
       	im.paste(region,box)
-      	im.save(f'static/pic/qr-code{k}.png')
+      	im.save('static/pic/qr-code' +str(k)+'.png')
       	del im
       return render_template("uploaded.html",time = time.time())
    else:
